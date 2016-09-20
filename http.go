@@ -16,8 +16,10 @@ func main() {
     fmt.Fprintf(os.Stdout, "Listening on :%s\n", port)
     hostname, _ := os.Hostname()
     
-    fs := http.FileServer(http.Dir("/app/www"))
-    http.Handle("/", fs)
+    http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+        fmt.Fprintf(os.Stdout, "I'm host %s with port %s \n", hostname, port)
+ 	fmt.Fprintf(w, "I'm host %s with port %s \n", hostname, port)
+    })
     
     log.Fatal(http.ListenAndServe(":" + port, nil))
     
