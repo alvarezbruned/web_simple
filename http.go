@@ -21,7 +21,7 @@ func main() {
     })
     fs := http.FileServer(http.Dir("/app/www"))
     http.Handle("/", fs)
-    http.HandleFunc("/", serveTemplate)
+    
     log.Fatal(http.ListenAndServe(":" + port, nil))
     
 }
