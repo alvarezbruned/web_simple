@@ -7,6 +7,6 @@ WORKDIR /app
 RUN go build -o http
 
 ENV PORT 8000
-EXPOSE $PORT
+EXPOSE 8000
 
 CMD ["/app/http"]
