@@ -27,8 +27,8 @@ func main() {
 }
 
 func serveTemplate(w http.ResponseWriter, r *http.Request) {
-  lp := path.Join("www", "index.htm")
-  fp := path.Join("www", r.URL.Path)
+  lp := path.Join("/app/www", "index.htm")
+  fp := path.Join("/app/www", r.URL.Path)
 
   // Return a 404 if the template doesn't exist
   info, err := os.Stat(fp)
