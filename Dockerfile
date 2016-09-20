@@ -5,6 +5,8 @@ RUN apt-get install bash
 ADD . /app
 WORKDIR /app
 RUN go build -o http
+RUN mkdir /app/www
+RUN touch /app/www/index.htm
 
 ENV PORT 8000
 EXPOSE $PORT
