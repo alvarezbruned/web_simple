@@ -20,7 +20,15 @@ func main() {
  	fmt.Fprintf(w, "I'm host %s with port %s \n", hostname, port)
     })
 
-
+    http.HandleFunc("/", serveTemplate)
     log.Fatal(http.ListenAndServe(":" + port, nil))
+    
 }
 
+func serveTemplate(w http.ResponseWriter, r *http.Request) {
+  lp := path.Join("www", "index.htm")
+  fp := path.Join("www", r.URL.Path)
+
+  tmpl, _ := www.ParseFiles(lp, fp)
+  tmpl.ExecuteTemplate(w, "layout", nil)
+}
